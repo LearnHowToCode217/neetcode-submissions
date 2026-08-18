@@ -1,0 +1,15 @@
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        gasTotal = sum(gas)
+        costTotal = sum(cost)
+        if gasTotal < costTotal: # Checking valid trip
+            return -1
+        
+        start, tank = 0, 0
+        for i in range(len(gas)):
+            tank += gas[i] - cost[i]
+            if tank < 0:
+                tank = 0 
+                start = i + 1
+        
+        return start
